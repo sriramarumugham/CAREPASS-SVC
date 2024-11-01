@@ -1,0 +1,324 @@
+[
+  {
+    "productId": "product1",
+    "productName": "CarePass Tax Saver",
+    "productDescription": "Description for Product 1",
+    "price": 5000,
+    "pricePerBeneficiary": 0,
+    "productStatus": "ACTIVE",
+    "noOfDependent": 0,
+    "subProducts": [],
+    "formSchema": [
+      {
+        "sectionTitle": "User Information",
+        "fields": [
+          {
+            "name": "fullName",
+            "label": "Full Name",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "age",
+            "label": "Age",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "primaryEmail",
+            "label": "Email Address",
+            "type": "email",
+            "required": true
+          },
+          {
+            "name": "primaryMobile",
+            "label": "Mobile Number",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "gender",
+            "label": "Gender",
+            "type": "select",
+            "options": [
+              { "label": "Male", "value": "MALE" },
+              { "label": "Female", "value": "FEMALE" },
+              { "label": "Other", "value": "OTHER" }
+            ],
+            "required": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "productId": "product2",
+    "productName": "CarePass Silver Plan",
+    "productDescription": "Description for Product 2",
+    "price": 5000,
+    "pricePerBeneficiary": 0,
+    "productStatus": "ACTIVE",
+    "noOfDependent": 4,
+    "subProducts": [],
+    "formSchema": [
+      {
+        "sectionTitle": "User Information",
+        "fields": [
+          {
+            "name": "fullName",
+            "label": "Full Name",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "age",
+            "label": "Age",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "primaryEmail",
+            "label": "Email Address",
+            "type": "email",
+            "required": true
+          },
+          {
+            "name": "primaryMobile",
+            "label": "Mobile Number",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "gender",
+            "label": "Gender",
+            "type": "select",
+            "options": [
+              { "label": "Male", "value": "MALE" },
+              { "label": "Female", "value": "FEMALE" },
+              { "label": "Other", "value": "OTHER" }
+            ],
+            "required": true
+          },
+          {
+            "name": "beneficiaries",
+            "label": "Beneficiary",
+            "type": "array",
+            "maxCount": 3,
+            "fields": [
+              {
+                "name": "fullName",
+                "label": "Beneficiary's Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "age",
+                "label": "Beneficiary's Age",
+                "type": "number",
+                "required": true
+              },
+              {
+                "name": "relation",
+                "label": "Relation",
+                "type": "select",
+                "options": [
+                  { "label": "Father", "value": "FATHER" },
+                  { "label": "Mother", "value": "MOTHER" },
+                  { "label": "Spouse", "value": "SPOUSE" },
+                  { "label": "Child", "value": "CHILD" }
+                ],
+                "required": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "productId": "product3",
+    "productName": "Critical Illness",
+    "productDescription": "Description for Product 3",
+    "price": 10000,
+    "pricePerBeneficiary": 1000,
+    "productStatus": "ACTIVE",
+    "noOfDependent": 25,
+    "subProducts": ["product1", "product2"],
+    "formSchema": [
+      {
+        "sectionTitle": "User Information",
+        "fields": [
+          {
+            "name": "fullName",
+            "label": "Full Name",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "age",
+            "label": "Age",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "primaryEmail",
+            "label": "Email Address",
+            "type": "email",
+            "required": true
+          },
+          {
+            "name": "primaryMobile",
+            "label": "Mobile Number",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "gender",
+            "label": "Gender",
+            "type": "select",
+            "options": [
+              { "label": "Male", "value": "MALE" },
+              { "label": "Female", "value": "FEMALE" },
+              { "label": "Other", "value": "OTHER" }
+            ],
+            "required": true
+          },
+          {
+            "name": "city",
+            "label": "City",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "beneficiaries",
+            "label": "Beneficiary",
+            "type": "array",
+            "maxCount": 25,
+            "fields": [
+              {
+                "name": "fullName",
+                "label": "Beneficiary's Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "age",
+                "label": "Beneficiary's Age",
+                "type": "number",
+                "required": true
+              },
+              {
+                "name": "relation",
+                "label": "Relation",
+                "type": "select",
+                "options": [
+                  { "label": "Father", "value": "FATHER" },
+                  { "label": "Mother", "value": "MOTHER" },
+                  { "label": "Spouse", "value": "SPOUSE" },
+                  { "label": "Child", "value": "CHILD" }
+                ],
+                "required": true
+              },
+              {
+                "name": "city",
+                "label": "City",
+                "type": "text",
+                "required": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "productId": "product4",
+    "productName": "Carepass gold pan + super topup",
+    "productDescription": "Description for Product 4",
+    "price": 15000,
+    "pricePerBeneficiary": 0,
+    "productStatus": "ACTIVE",
+    "noOfDependent": 25,
+    "subProducts": ["product1", "product2"],
+    "formSchema": [
+      {
+        "sectionTitle": "User Information",
+        "fields": [
+          {
+            "name": "fullName",
+            "label": "Full Name",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "age",
+            "label": "Age",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "primaryEmail",
+            "label": "Email Address",
+            "type": "email",
+            "required": true
+          },
+          {
+            "name": "primaryMobile",
+            "label": "Mobile Number",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "gender",
+            "label": "Gender",
+            "type": "select",
+            "options": [
+              { "label": "Male", "value": "MALE" },
+              { "label": "Female", "value": "FEMALE" },
+              { "label": "Other", "value": "OTHER" }
+            ],
+            "required": true
+          },
+          {
+            "name": "city",
+            "label": "City",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "beneficiaries",
+            "label": "Beneficiary",
+            "type": "array",
+            "maxCount": 3,
+            "fields": [
+              {
+                "name": "fullName",
+                "label": "Beneficiary's Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "age",
+                "label": "Beneficiary's Age",
+                "type": "number",
+                "required": true
+              },
+              {
+                "name": "relation",
+                "label": "Relation",
+                "type": "select",
+                "options": [
+                  { "label": "Father", "value": "FATHER" },
+                  { "label": "Mother", "value": "MOTHER" },
+                  { "label": "Spouse", "value": "SPOUSE" },
+                  { "label": "Child", "value": "CHILD" }
+                ],
+                "required": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
