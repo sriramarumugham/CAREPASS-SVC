@@ -7,7 +7,7 @@ export default fp(async (fastify) => {
   fastify.register(swagger, {
     openapi: {
       info: {
-        title: ' CAREPASS Backend API',
+        title: 'Backend API',
         description: '',
         version: '0.1.0',
       },
