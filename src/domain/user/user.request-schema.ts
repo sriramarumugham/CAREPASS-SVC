@@ -2,8 +2,10 @@ import { Type } from '@sinclair/typebox';
 import { FastifySchema } from 'fastify';
 import {
   CreateUserBodySchema,
+  GetOtpBodySchema,
   UpdateUserBodySchema,
   UserSchema,
+  ValidateOtpBodySchema,
 } from '../../types/user.types';
 
 export const creaetUserRequestValidation = {
@@ -74,6 +76,47 @@ export const updateUserRequestValidation = {
   body: UpdateUserBodySchema,
   response: {
     200: Type.Object({
+      user: Type.Optional(UserSchema),
+    }),
+    400: Type.Object({
+      error: Type.String(),
+    }),
+    404: Type.Object({
+      error: Type.String(),
+    }),
+    500: Type.Object({
+      error: Type.String(),
+    }),
+  },
+} satisfies FastifySchema;
+
+export const getOtpUserValidation = {
+  tags: ['user'],
+  description: 'get OTP ',
+  body: GetOtpBodySchema,
+  response: {
+    200: Type.Object({
+      message: Type.String(),
+    }),
+    400: Type.Object({
+      error: Type.String(),
+    }),
+    404: Type.Object({
+      error: Type.String(),
+    }),
+    500: Type.Object({
+      error: Type.String(),
+    }),
+  },
+} satisfies FastifySchema;
+
+export const ValidateOtpValidation = {
+  tags: ['user'],
+  description: 'validate OTP ',
+  body: ValidateOtpBodySchema,
+  response: {
+    200: Type.Object({
+      token: Type.String(),
       user: Type.Optional(UserSchema),
     }),
     400: Type.Object({

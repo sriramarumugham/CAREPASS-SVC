@@ -11,12 +11,15 @@ import {
 import {
   creaetUserRequestValidation,
   getActivePlansRequestValidation,
+  getOtpUserValidation,
   getPurchasesRequestValidation,
   updateUserRequestValidation,
+  ValidateOtpValidation,
 } from '../../../../domain/user/user.request-schema';
 import {
   CreateUserBodyDocument,
   UpdateUserBodyDocument,
+  ValidateOtDocument,
 } from '../../../../types/user.types';
 import {
   getUserIdFromRequestHeader,
@@ -48,6 +51,57 @@ const UserAuth: FastifyPluginAsync = async (fastify): Promise<void> => {
           createErrorResponse(
             res,
             error?.message || 'Error createing user',
+            error?.status,
+          );
+        }
+      },
+    )
+    .post(
+      '/get-otp',
+      { schema: getOtpUserValidation },
+      async (req: FastifyRequest, res: FastifyReply) => {
+        try {
+          const body = req.body as CreateUserBodyDocument;
+
+          let user = await getUserRepo(body.email as string);
+          if (!user) {
+            throw new Error('user  does not exists please Register');
+          }
+
+          await updateUserRepo(user?.userId, { otp: 123456 });
+          return res.code(200).send({
+            message: 'OTP sent to your email',
+          });
+        } catch (error: any) {
+          console.error(error);
+          createErrorResponse(
+            res,
+            error?.message || 'Error createing user',
+            error?.status,
+          );
+        }
+      },
+    )
+    .post(
+      '/validate-otp',
+      { schema: ValidateOtpValidation },
+      async (req: FastifyRequest, res: FastifyReply) => {
+        try {
+          const body = req.body as ValidateOtDocument;
+
+          let user = await getUserRepo(body?.email as string);
+          if (user?.otp != body.otp) {
+            throw new Error('Invalid OTP');
+          }
+
+          const token = signToken(user?.userId!);
+
+          return res.code(200).send({ user: user, token });
+        } catch (error: any) {
+          console.error(error);
+          createErrorResponse(
+            res,
+            error?.message || 'Error logging user',
             error?.status,
           );
         }

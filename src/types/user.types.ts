@@ -25,7 +25,8 @@ const UserSchema = Type.Object({
   dateOfBirth: Type.Optional(Type.String()), // Optional
   gender: Type.Optional(Type.Enum(GENDER)), // Optional with specific values
   isSalaried: Type.Optional(Type.Boolean()), // Optional
-  smoking: Type.Optional(Type.Boolean()), // Optional
+  smoking: Type.Optional(Type.Boolean()),
+  otp: Type.Optional(Type.Number()),
 });
 
 const CreateUserBodySchema = Type.Pick(UserSchema, [
@@ -35,6 +36,14 @@ const CreateUserBodySchema = Type.Pick(UserSchema, [
 ]);
 
 type CreateUserBodyDocument = Static<typeof CreateUserBodySchema>;
+
+const GetOtpBodySchema = Type.Pick(UserSchema, ['email']);
+
+type getOtDocument = Static<typeof GetOtpBodySchema>;
+
+const ValidateOtpBodySchema = Type.Pick(UserSchema, ['otp', 'email']);
+
+type ValidateOtDocument = Static<typeof ValidateOtpBodySchema>;
 
 const UpdateUserBodySchema = Type.Pick(UserSchema, [
   'fullName',
@@ -48,6 +57,7 @@ const UpdateUserBodySchema = Type.Pick(UserSchema, [
   'isSalaried',
   'smoking',
   'pin',
+  'otp',
 ]);
 
 type UpdateUserBodyDocument = Static<typeof UpdateUserBodySchema>;
@@ -61,4 +71,8 @@ export {
   CreateUserBodySchema,
   UpdateUserBodySchema,
   UpdateUserBodyDocument,
+  GetOtpBodySchema,
+  getOtDocument,
+  ValidateOtDocument,
+  ValidateOtpBodySchema,
 };
