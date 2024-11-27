@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { ProposalType } from '../types/proposal.types';
 import { ActivePlanModel } from './models/policy.schema';
 const uuid = require('uuid');

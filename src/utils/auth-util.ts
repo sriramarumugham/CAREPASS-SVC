@@ -1,4 +1,4 @@
-import { FastifyRequest } from 'fastify';
+import { FastifyReply, FastifyRequest } from 'fastify';
 
 var jwt = require('jsonwebtoken');
 
@@ -10,26 +10,34 @@ export const signToken = (userId: string): string => {
 };
 
 export const verifyToken = (token: string) => {
-  try {
-    const decoded = jwt.verify(token, process.env.SECRET_KEY!);
-    return decoded;
-  } catch (error) {
-    throw new Error('Invalid token');
-  }
+  const decoded = jwt.verify(token, process.env.SECRET_KEY!);
+  return decoded;
 };
 
 export const getUserIdFromRequestHeader = (
   req: FastifyRequest,
-): { userId: string } => {
-  console.log('requst-body--', req.body);
-  const authHeader = req.headers.authorization;
+  res: FastifyReply,
+): { userId: string } | void => {
+  console.log('Request body:', req?.body);
 
-  console.log('authHeader--', authHeader);
+  const authHeader = req?.headers?.authorization;
+  console.log('Authorization header:', authHeader);
+
   if (!authHeader) {
     throw new Error('Authorization header missing');
   }
 
-  const token = authHeader.split(' ')[1]; // Get the token part
-  const decodedToken = verifyToken(token);
-  return decodedToken as { userId: string };
+  const token = authHeader.split(' ')[1]; // Extract token part
+
+  try {
+    const decodedToken = verifyToken(token);
+    if (!decodedToken) {
+      res.status(401).send({ message: 'Unauthorized' });
+      return;
+    }
+    return decodedToken; // Typed as { userId: string }
+  } catch (error) {
+    res.status(401).send({ message: 'Unauthorized' });
+    return;
+  }
 };

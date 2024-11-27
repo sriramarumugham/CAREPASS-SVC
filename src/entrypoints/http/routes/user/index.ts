@@ -133,12 +133,14 @@ const UserAuth: FastifyPluginAsync = async (fastify): Promise<void> => {
       { schema: getPurchasesRequestValidation },
       async (req: FastifyRequest, res: FastifyReply) => {
         try {
-          const user = getUserIdFromRequestHeader(req);
-          const purchases = await getPurchasesRepo(user.userId);
+          const user = getUserIdFromRequestHeader(req, res);
+          const purchases = await getPurchasesRepo(user?.userId!);
           return res.code(200).send({ data: purchases, message: 'purchases' });
         } catch (error: any) {
           console.error(error);
-          return res.code(500).send({ error: 'Internal Server Error' });
+          return res
+            .code(500)
+            .send({ error: error || 'Internal Server Error' });
         }
       },
     )
@@ -147,15 +149,20 @@ const UserAuth: FastifyPluginAsync = async (fastify): Promise<void> => {
       { schema: getActivePlansRequestValidation },
       async (req: FastifyRequest, res: FastifyReply) => {
         try {
-          const user = getUserIdFromRequestHeader(req);
-          const userDetails = await getUserByUserId(user?.userId);
-          const activePlans = await getActivePlansRepo(userDetails?.email!); // Implement this function to fetch active plans
+          const user = getUserIdFromRequestHeader(req, res);
+          const userDetails = await getUserByUserId(user?.userId!);
+          const activePlans = await getActivePlansRepo(
+            userDetails?.email!,
+            userDetails?.userId!,
+          );
           return res
             .code(200)
             .send({ data: activePlans, message: 'active-plans' });
         } catch (error: any) {
           console.error(error);
-          return res.code(500).send({ error: 'Internal Server Error' });
+          return res
+            .code(500)
+            .send({ error: error || 'Internal Server Error' });
         }
       },
     );

@@ -26,14 +26,14 @@ const Purchase: FastifyPluginAsync = async (fastify): Promise<void> => {
       { schema: purchaseRequestBodyValicaiton },
       async (req: FastifyRequest, res: FastifyReply) => {
         try {
-          const user = getUserIdFromRequestHeader(req);
+          const user = getUserIdFromRequestHeader(req, res);
 
           const body = req.body as CreateFormDataType;
 
           console.log(`BODY__ ${JSON.stringify(body?.formDetails, null, 2)}`);
           await validatePurchaseData(body);
           const response = await createProposalRepo({
-            createdBy: user?.userId,
+            createdBy: user?.userId!,
             formDetails: body.formDetails as any,
             totalPrice: body.totalPrice,
           });

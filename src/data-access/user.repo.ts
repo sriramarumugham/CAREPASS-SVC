@@ -33,10 +33,12 @@ const getUserByUserId = async (
   return await userModel.findOne({ userId: userId });
 };
 
-const getActivePlansRepo = async (email: string) => {
+const getActivePlansRepo = async (email: string, createdBy: string) => {
   return await ActivePlanModel.aggregate([
     {
-      $match: { 'userDetails.primaryEmail': email },
+      $match: {
+        $or: [{ 'userDetails.primaryEmail': email }, { createdBy: createdBy }],
+      },
     },
     {
       $lookup: {
