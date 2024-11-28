@@ -25,7 +25,9 @@ import {
   getUserIdFromRequestHeader,
   signToken,
 } from '../../../../utils/auth-util';
+import { generateSixDigitNumber } from '../../../../utils/random';
 import { createErrorResponse } from '../../../../utils/response';
+import { sendEmail } from '../email';
 var jwt = require('jsonwebtoken');
 
 const UserAuth: FastifyPluginAsync = async (fastify): Promise<void> => {
@@ -67,8 +69,16 @@ const UserAuth: FastifyPluginAsync = async (fastify): Promise<void> => {
           if (!user) {
             throw new Error('user  does not exists please Register');
           }
+          const OTP = generateSixDigitNumber();
 
-          await updateUserRepo(user?.userId, { otp: 123456 });
+          await sendEmail({
+            to: body?.email,
+            subject: 'OTP',
+            text: `OTP is :${OTP}`,
+            html: `OTP is : ${OTP}`,
+          });
+
+          await updateUserRepo(user?.userId, { otp: OTP });
           return res.code(200).send({
             message: 'OTP sent to your email',
           });
@@ -76,7 +86,7 @@ const UserAuth: FastifyPluginAsync = async (fastify): Promise<void> => {
           console.error(error);
           createErrorResponse(
             res,
-            error?.message || 'Error createing user',
+            error?.message || 'Error creating user',
             error?.status,
           );
         }

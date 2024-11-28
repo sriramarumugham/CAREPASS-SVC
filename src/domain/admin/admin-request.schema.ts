@@ -26,3 +26,22 @@ export const getAllActivePlansRequestSchema = {
     }),
   },
 } satisfies FastifySchema;
+
+export const sendEmailSchema = {
+  tags: ['admin'],
+  body: Type.Object({
+    to: Type.String(), // Recipient's email
+    subject: Type.String(), // Email subject
+    text: Type.Optional(Type.String()), // Plain text content
+    html: Type.Optional(Type.String()), // HTML content
+  }),
+  response: {
+    200: Type.Any(),
+    400: Type.Object({
+      error: Type.String(), // Validation error message
+    }),
+    500: Type.Object({
+      error: Type.String(), // Server error message
+    }),
+  },
+} satisfies FastifySchema;
