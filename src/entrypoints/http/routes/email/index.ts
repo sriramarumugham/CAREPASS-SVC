@@ -53,7 +53,7 @@ export async function sendEmail({
       port: 465,
       secure: true, // Use SSL
       auth: {
-        user: process.env.SMTP_USE,
+        user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
       },
     };
