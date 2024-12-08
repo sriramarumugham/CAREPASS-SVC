@@ -9,6 +9,7 @@ const UserDetailsSchema = Type.Object({
   primaryEmail: Type.String(),
   primaryMobile: Type.String(),
   beneficiaries: Type.Optional(Type.Array(Type.Any())),
+  criticalIllnessBeneficiary: Type.Optional(Type.Array(Type.Any())),
 });
 
 // Define PriceDetails schema

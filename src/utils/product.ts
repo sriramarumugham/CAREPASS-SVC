@@ -23,12 +23,12 @@ export const validatePurchaseData = async (body: CreateFormDataType) => {
     // Check price validation
     const itemTotalPrice = item.priceDetails.price;
     const productPrice = product.price;
-    const beneficiaries = item.userDetails?.beneficiaries || [];
+    const beneficiaries = item.userDetails?.criticalIllnessBeneficiary || [];
     const addedBeneficiaries = beneficiaries.length;
 
     // Calculate extra price based on beneficiaries
     const extraPriceWithBeneficiaries =
-      addedBeneficiaries * product.pricePerBeneficiary;
+      addedBeneficiaries * product?.pricePerCriticalIllnessBeneficiary;
 
     // Updated price validation logic
     const expectedTotalPrice = productPrice + extraPriceWithBeneficiaries;
@@ -40,11 +40,11 @@ export const validatePurchaseData = async (body: CreateFormDataType) => {
     }
 
     // Check maximum beneficiaries allowed
-    if (addedBeneficiaries > product.noOfDependent) {
-      throw new Error(
-        `Maximum ${product.noOfDependent} beneficiaries allowed for ${item.userDetails.productId}`,
-      );
-    }
+    // if (addedBeneficiaries > product.noOfDependent) {
+    //   throw new Error(
+    //     `Maximum ${product.noOfDependent} beneficiaries allowed for ${item.userDetails.productId}`,
+    //   );
+    // }
 
     // Add to total price
     calculatedTotalPrice += itemTotalPrice; // Already includes beneficiary cost

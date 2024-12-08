@@ -5,6 +5,7 @@
     "productDescription": "Streamline Your Health Plan Management with Flexible, Digitalized Solutions for a Happy, Healthy, and Secured Lifestyle",
     "price": 5000,
     "pricePerBeneficiary": 0,
+    "pricePerCriticalIllnessBeneficiary": 0,
     "productStatus": "ACTIVE",
     "noOfDependent": 0,
     "subProducts": [],
@@ -63,6 +64,7 @@
     "productDescription": "Unlock ₹30,000+ in Benefits for Just ₹5,000! Protect Your Loved Ones with Our Primary Care Services and Flexible Digital Wallet",
     "price": 5000,
     "pricePerBeneficiary": 0,
+    "pricePerCriticalIllnessBeneficiary": 0,
     "productStatus": "ACTIVE",
     "noOfDependent": 4,
     "subProducts": [],
@@ -116,6 +118,7 @@
             "label": "Beneficiary",
             "type": "array",
             "maxCount": 3,
+            "pricePerMember": 0,
             "fields": [
               {
                 "name": "fullName",
@@ -150,7 +153,8 @@
     "productName": "CarePass Gold",
     "productDescription": "Experience unmatched peace of mind with CarePass Gold, the ultimate healthcare solution for you and your loved ones. This premium product seamlessly integrates the benefits of Tax Saver and Silver, with an added layer of critical illness coverage.",
     "price": 10000,
-    "pricePerBeneficiary": 1000,
+    "pricePerBeneficiary": 0,
+    "pricePerCriticalIllnessBeneficiary": 1000,
     "productStatus": "ACTIVE",
     "noOfDependent": 7,
     "subProducts": ["product1", "product2"],
@@ -209,7 +213,8 @@
             "name": "beneficiaries",
             "label": "Beneficiary",
             "type": "array",
-            "maxCount": 7,
+            "maxCount": 3,
+            "pricePerMember": 0,
             "fields": [
               {
                 "name": "fullName",
@@ -242,6 +247,34 @@
                 "required": false
               }
             ]
+          },
+
+          {
+            "name": "criticalIllnessBeneficiary",
+            "label": "Critical Illness Beneficiary",
+            "type": "array",
+            "maxCount": 3,
+            "pricePerMember": 1000,
+            "fields": [
+              {
+                "name": "fullName",
+                "label": "Beneficiary's Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "relation",
+                "label": "Relation",
+                "type": "select",
+                "options": [
+                  { "label": "Father", "value": "FATHER" },
+                  { "label": "Mother", "value": "MOTHER" },
+                  { "label": "Spouse", "value": "SPOUSE" },
+                  { "label": "Child", "value": "CHILD" }
+                ],
+                "required": true
+              }
+            ]
           }
         ]
       }
@@ -253,6 +286,7 @@
     "productDescription": "Experience unparalleled protection and care with CarePass Platinum, a cohesive product combining the benefits of Tax Saver, Silver, and Gold, enhanced with a super top-up.",
     "price": 15000,
     "pricePerBeneficiary": 0,
+    "pricePerCriticalIllnessBeneficiary": 0,
     "productStatus": "ACTIVE",
     "noOfDependent": 25,
     "subProducts": ["product1", "product2"],
@@ -312,6 +346,7 @@
             "label": "Beneficiary",
             "type": "array",
             "maxCount": 3,
+            "pricePerMember": 0,
             "fields": [
               {
                 "name": "fullName",
