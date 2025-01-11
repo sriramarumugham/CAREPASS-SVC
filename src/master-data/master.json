@@ -160,7 +160,7 @@
     "subProducts": ["product1", "product2"],
     "formSchema": [
       {
-        "sectionTitle": "Beneficiary Information",
+        "sectionTitle": "CAREPASS TAX SAVER",
         "fields": [
           {
             "name": "self",
@@ -208,7 +208,12 @@
             "label": "City",
             "type": "text",
             "required": false
-          },
+          }
+        ]
+      },
+      {
+        "sectionTitle": "CAREPASS SILVER",
+        "fields": [
           {
             "name": "beneficiaries",
             "label": "Beneficiary",
@@ -247,8 +252,12 @@
                 "required": false
               }
             ]
-          },
-
+          }
+        ]
+      },
+      {
+        "sectionTitle": "CRITICAL ILLNESS",
+        "fields": [
           {
             "name": "criticalIllnessBeneficiary",
             "label": "Critical Illness Beneficiary",
@@ -257,10 +266,15 @@
             "pricePerMember": 1000,
             "fields": [
               {
+                "name": "isSelected",
+                "label": "Include in Plan",
+                "type": "checkbox"
+              },
+              {
                 "name": "fullName",
                 "label": "Beneficiary's Name",
                 "type": "text",
-                "required": true
+                "readonly": true
               },
               {
                 "name": "relation",
@@ -272,7 +286,7 @@
                   { "label": "Spouse", "value": "SPOUSE" },
                   { "label": "Child", "value": "CHILD" }
                 ],
-                "required": true
+                "readonly": true
               }
             ]
           }
@@ -286,13 +300,13 @@
     "productDescription": "Experience unparalleled protection and care with CarePass Platinum, a cohesive product combining the benefits of Tax Saver, Silver, and Gold, enhanced with a super top-up.",
     "price": 15000,
     "pricePerBeneficiary": 0,
-    "pricePerCriticalIllnessBeneficiary": 0,
+    "pricePerCriticalIllnessBeneficiary": 1000,
     "productStatus": "ACTIVE",
-    "noOfDependent": 25,
+    "noOfDependent": 7,
     "subProducts": ["product1", "product2"],
     "formSchema": [
       {
-        "sectionTitle": "Beneficiary Information",
+        "sectionTitle": "CAREPASS TAX SAVER",
         "fields": [
           {
             "name": "self",
@@ -340,7 +354,12 @@
             "label": "City",
             "type": "text",
             "required": false
-          },
+          }
+        ]
+      },
+      {
+        "sectionTitle": "CAREPASS SILVER",
+        "fields": [
           {
             "name": "beneficiaries",
             "label": "Beneficiary",
@@ -371,8 +390,76 @@
                   { "label": "Child", "value": "CHILD" }
                 ],
                 "required": true
+              },
+              {
+                "name": "city",
+                "label": "City",
+                "type": "text",
+                "required": false
               }
             ]
+          }
+        ]
+      },
+      {
+        "sectionTitle": "CRITICAL ILLNESS",
+        "fields": [
+          {
+            "name": "criticalIllnessBeneficiary",
+            "label": "Critical Illness Beneficiary",
+            "type": "array",
+            "maxCount": 3,
+            "pricePerMember": 1000,
+            "fields": [
+              {
+                "name": "isSelected",
+                "label": "Include in Plan",
+                "type": "checkbox"
+              },
+              {
+                "name": "fullName",
+                "label": "Beneficiary's Name",
+                "type": "text",
+                "readonly": true
+              },
+              {
+                "name": "relation",
+                "label": "Relation",
+                "type": "select",
+                "options": [
+                  { "label": "Father", "value": "FATHER" },
+                  { "label": "Mother", "value": "MOTHER" },
+                  { "label": "Spouse", "value": "SPOUSE" },
+                  { "label": "Child", "value": "CHILD" }
+                ],
+                "readonly": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sectionTitle": "CAREPASS PLATINUM",
+        "fields": [
+          {
+            "name": "sumAssured",
+            "label": "Select Your Sum Assured",
+            "type": "radio",
+            "options": [
+              { "label": "3 Lakh", "value": "3L" },
+              { "label": "5 Lakh", "value": "5L" }
+            ],
+            "required": true
+          },
+          {
+            "name": "superTopUpInsurance",
+            "label": "Select Your Super Top-Up Insurance",
+            "type": "radio",
+            "options": [
+              { "label": "15 Lakh", "value": "15L" },
+              { "label": "25 Lakh", "value": "25L" }
+            ],
+            "required": true
           }
         ]
       }
