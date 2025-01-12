@@ -287,6 +287,11 @@
                   { "label": "Child", "value": "CHILD" }
                 ],
                 "readonly": true
+              },
+              {
+                "name": "isSaved",
+                "type": "boolean",
+                "default": false
               }
             ]
           }
@@ -433,6 +438,11 @@
                   { "label": "Child", "value": "CHILD" }
                 ],
                 "readonly": true
+              },
+              {
+                "name": "isSaved",
+                "type": "boolean",
+                "default": false
               }
             ]
           }

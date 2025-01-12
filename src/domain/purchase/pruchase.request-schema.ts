@@ -11,7 +11,11 @@ const UserDetailsSchema = Type.Object({
   beneficiaries: Type.Optional(Type.Array(Type.Any())),
   criticalIllnessBeneficiary: Type.Optional(
     Type.Array(
-      Type.Object({ fullName: Type.String(), isSelected: Type.Boolean() }),
+      Type.Object({
+        fullName: Type.String(),
+        isSelected: Type.Boolean(),
+        relation: Type.String(),
+      }),
     ),
   ),
 });

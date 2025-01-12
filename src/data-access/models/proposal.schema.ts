@@ -11,6 +11,7 @@ export const beneficiarySchema = new Schema({
 export const criticalBeneficiarySchema = new Schema({
   fullName: { type: String, required: true },
   isSelected: { type: Boolean },
+  relation: { type: String },
 });
 criticalBeneficiarySchema.pre('save', function (next) {
   if (this.id && !mongoose.Types.ObjectId.isValid(this.id)) {
