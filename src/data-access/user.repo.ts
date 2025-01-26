@@ -51,6 +51,7 @@ const getActivePlansRepo = async (email: string, createdBy: string) => {
     {
       $unwind: '$productDetails', // Unwind to treat array result as a single object
     },
+    { $sort: { purchasedDate: 1 } },
     {
       $project: {
         planId: 1,
@@ -60,7 +61,8 @@ const getActivePlansRepo = async (email: string, createdBy: string) => {
         userDetails: 1,
         priceDetails: 1,
         createdBy: 1,
-        productName: '$productDetails.productName', // Get the productName
+        productName: '$productDetails.productName',
+        createdAt: 1,
       },
     },
   ]);
@@ -81,6 +83,7 @@ const getPurchasesRepo = async (userId: string) => {
     {
       $unwind: '$productDetails', // Unwind to treat array result as a single object
     },
+    { $sort: { purchasedDate: 1 } },
     {
       $project: {
         planId: 1,

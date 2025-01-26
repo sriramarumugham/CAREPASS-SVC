@@ -238,8 +238,6 @@
                 "label": "Relation",
                 "type": "select",
                 "options": [
-                  { "label": "Father", "value": "FATHER" },
-                  { "label": "Mother", "value": "MOTHER" },
                   { "label": "Spouse", "value": "SPOUSE" },
                   { "label": "Child", "value": "CHILD" }
                 ],
@@ -281,8 +279,6 @@
                 "label": "Relation",
                 "type": "select",
                 "options": [
-                  { "label": "Father", "value": "FATHER" },
-                  { "label": "Mother", "value": "MOTHER" },
                   { "label": "Spouse", "value": "SPOUSE" },
                   { "label": "Child", "value": "CHILD" }
                 ],
@@ -389,8 +385,6 @@
                 "label": "Relation",
                 "type": "select",
                 "options": [
-                  { "label": "Father", "value": "FATHER" },
-                  { "label": "Mother", "value": "MOTHER" },
                   { "label": "Spouse", "value": "SPOUSE" },
                   { "label": "Child", "value": "CHILD" }
                 ],
@@ -432,8 +426,6 @@
                 "label": "Relation",
                 "type": "select",
                 "options": [
-                  { "label": "Father", "value": "FATHER" },
-                  { "label": "Mother", "value": "MOTHER" },
                   { "label": "Spouse", "value": "SPOUSE" },
                   { "label": "Child", "value": "CHILD" }
                 ],
