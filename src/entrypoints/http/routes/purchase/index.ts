@@ -37,7 +37,6 @@ const Purchase: FastifyPluginAsync = async (fastify): Promise<void> => {
             formDetails: body.formDetails as any,
             totalPrice: body.totalPrice,
           });
-
           const transactionId = randomUUID();
 
           // todo remove hard coded values;

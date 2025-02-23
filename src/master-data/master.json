@@ -6,6 +6,7 @@
     "price": 5000,
     "pricePerBeneficiary": 0,
     "pricePerCriticalIllnessBeneficiary": 0,
+    "pricePerSuperTopupBeneficiary": 0,
     "productStatus": "ACTIVE",
     "noOfDependent": 0,
     "subProducts": [],
@@ -65,6 +66,7 @@
     "price": 5000,
     "pricePerBeneficiary": 0,
     "pricePerCriticalIllnessBeneficiary": 0,
+    "pricePerSuperTopupBeneficiary": 0,
     "productStatus": "ACTIVE",
     "noOfDependent": 4,
     "subProducts": [],
@@ -155,6 +157,7 @@
     "price": 10000,
     "pricePerBeneficiary": 0,
     "pricePerCriticalIllnessBeneficiary": 1000,
+    "pricePerSuperTopupBeneficiary": 0,
     "productStatus": "ACTIVE",
     "noOfDependent": 7,
     "subProducts": ["product1", "product2"],
@@ -302,6 +305,7 @@
     "price": 15000,
     "pricePerBeneficiary": 0,
     "pricePerCriticalIllnessBeneficiary": 1000,
+    "pricePerSuperTopupBeneficiary": 2500,
     "productStatus": "ACTIVE",
     "noOfDependent": 7,
     "subProducts": ["product1", "product2"],
@@ -445,7 +449,7 @@
         "fields": [
           {
             "name": "sumAssured",
-            "label": "Select Your Sum Assured",
+            "label": "Select Your Base Insurance-Sum Insured",
             "type": "radio",
             "options": [
               { "label": "3 Lakh", "value": "3L" },
@@ -455,13 +459,48 @@
           },
           {
             "name": "superTopUpInsurance",
-            "label": "Select Your Super Top-Up Insurance",
+            "label": "Select Your Super Top-Up- Sum Insured",
             "type": "radio",
             "options": [
               { "label": "15 Lakh", "value": "15L" },
               { "label": "25 Lakh", "value": "25L" }
             ],
             "required": true
+          },
+          {
+            "name": "platinumBeneficiary",
+            "label": "Platinum  Beneficiary",
+            "type": "array",
+            "maxCount": 3,
+            "pricePerMember": 2500,
+            "fields": [
+              {
+                "name": "isSelected",
+                "label": "Include in Plan",
+                "type": "checkbox"
+              },
+              {
+                "name": "fullName",
+                "label": "Beneficiary's Name",
+                "type": "text",
+                "readonly": true
+              },
+              {
+                "name": "relation",
+                "label": "Relation",
+                "type": "select",
+                "options": [
+                  { "label": "Spouse", "value": "SPOUSE" },
+                  { "label": "Child", "value": "CHILD" }
+                ],
+                "readonly": true
+              },
+              {
+                "name": "isSaved",
+                "type": "boolean",
+                "default": false
+              }
+            ]
           }
         ]
       }

@@ -8,6 +8,7 @@ const mongooseProductSchema = new Schema(
     price: { type: Number, required: true },
     pricePerBeneficiary: { type: Number, required: true },
     pricePerCriticalIllnessBeneficiary: { type: Number, required: true },
+    pricePerSuperTopupBeneficiary: { type: Number },
     productStatus: { type: String, required: true },
     noOfDependent: { type: Number, required: true },
     subProducts: [{ type: String }],

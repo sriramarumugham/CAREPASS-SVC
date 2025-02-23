@@ -18,20 +18,28 @@ export const validatePurchaseData = async (body: CreateFormDataType) => {
       throw new Error(`Product ${item.userDetails.productId} not found`);
     }
 
-    console.log('ITEM___', item);
-
     // Check price validation
     const itemTotalPrice = item.priceDetails.price;
     const productPrice = product.price;
     const beneficiaries = item.userDetails?.criticalIllnessBeneficiary || [];
+    const superTopUpBeneficiary = item.userDetails?.superTopUpBeneficiary || [];
     const addedBeneficiaries = beneficiaries.length;
 
     // Calculate extra price based on beneficiaries
     const extraPriceWithBeneficiaries =
       addedBeneficiaries * product?.pricePerCriticalIllnessBeneficiary;
 
+    const pricePerSuperTopupBeneficiary =
+      product?.pricePerSuperTopupBeneficiary || 0;
+
+    const extraPriceWithSupertopupBeneficiaries =
+      superTopUpBeneficiary.length * pricePerSuperTopupBeneficiary;
+
     // Updated price validation logic
-    const expectedTotalPrice = productPrice + extraPriceWithBeneficiaries;
+    const expectedTotalPrice =
+      productPrice +
+      extraPriceWithBeneficiaries +
+      extraPriceWithSupertopupBeneficiaries;
 
     if (itemTotalPrice !== expectedTotalPrice) {
       throw new Error(

@@ -33,6 +33,10 @@ export const userDetailsSchema = new Schema({
     type: [criticalBeneficiarySchema],
     default: [],
   },
+  superTopUpBeneficiary: {
+    type: [criticalBeneficiarySchema],
+    default: [],
+  },
 });
 
 const priceDetailsSchema = new Schema({

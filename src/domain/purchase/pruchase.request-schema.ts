@@ -18,6 +18,29 @@ const UserDetailsSchema = Type.Object({
       }),
     ),
   ),
+  superTopUpBeneficiary: Type.Optional(
+    Type.Array(
+      Type.Optional(
+        Type.Object({
+          fullName: Type.Any(),
+          isSelected: Type.Any(),
+          relation: Type.Any(),
+        }),
+      ),
+    ),
+  ),
+  superTopUpInsurance: Type.Optional(
+    Type.Array(
+      Type.Optional(
+        Type.Object({
+          fullName: Type.Any(),
+          isSelected: Type.Any(),
+          relation: Type.Any(),
+          id: Type.Any(),
+        }),
+      ),
+    ),
+  ),
 });
 
 // Define PriceDetails schema
@@ -41,7 +64,7 @@ export type CreateFormDataType = Static<typeof CreateFormDataSchema>;
 // Define the validation for the API route
 export const purchaseRequestBodyValicaiton = {
   tags: ['form/create'],
-  body: CreateFormDataSchema,
+  // body: Type.Any(),
   response: {
     200: Type.Object({
       message: Type.String(),

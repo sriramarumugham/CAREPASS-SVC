@@ -8,6 +8,7 @@ export const ProductSchema = Type.Object({
 
   pricePerBeneficiary: Type.Number(),
   pricePerCriticalIllnessBeneficiary: Type.Number(),
+  pricePerSuperTopupBeneficiary: Type.Optional(Type.Number()),
   productStatus: Type.String(),
   noOfDependent: Type.Number(),
   subProducts: Type.Array(Type.String()), // Array of sub-product IDs
