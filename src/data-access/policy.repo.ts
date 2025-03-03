@@ -25,6 +25,20 @@ export const getActivePlansByProposalId = async (proposalId: string) => {
   return await ActivePlanModel.find({ proposalId: proposalId });
 };
 
-export const getAllActivePlans = async () => {
-  return await ActivePlanModel.find(); // Fetches all active plans
+export const getAllActivePlans = async (
+  page: number = 1,
+  limit: number = 10,
+) => {
+  const skip = (page - 1) * limit;
+
+  const activePlans = await ActivePlanModel.find().skip(skip).limit(limit);
+
+  const total = await ActivePlanModel.countDocuments();
+
+  return {
+    data: activePlans,
+    total,
+    page,
+    totalPages: Math.ceil(total / limit),
+  };
 };

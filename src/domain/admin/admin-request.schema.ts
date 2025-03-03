@@ -3,23 +3,35 @@ import { FastifySchema } from 'fastify';
 
 export const getAllTransactionRequestSchema = {
   tags: ['admin'],
+  querystring: Type.Object({
+    page: Type.Optional(Type.Number({ minimum: 1 })),
+    limit: Type.Optional(Type.Number({ minimum: 1 })),
+  }),
   response: {
     200: Type.Object({
-      data: Type.Any(),
+      data: Type.Array(Type.Any()),
+      total: Type.Number(),
+      page: Type.Number(),
+      totalPages: Type.Number(),
     }),
-    404: Type.Any(),
-    500: Type.Any(),
+    500: Type.Object({
+      error: Type.String(),
+    }),
   },
 } satisfies FastifySchema;
 
 export const getAllActivePlansRequestSchema = {
   tags: ['admin'],
+  querystring: Type.Object({
+    page: Type.Optional(Type.Number({ minimum: 1 })),
+    limit: Type.Optional(Type.Number({ minimum: 1 })),
+  }),
   response: {
     200: Type.Object({
-      data: Type.Any(),
-    }),
-    404: Type.Object({
-      error: Type.String(),
+      data: Type.Array(Type.Any()),
+      total: Type.Number(),
+      page: Type.Number(),
+      totalPages: Type.Number(),
     }),
     500: Type.Object({
       error: Type.String(),
@@ -42,6 +54,25 @@ export const sendEmailSchema = {
     }),
     500: Type.Object({
       error: Type.String(), // Server error message
+    }),
+  },
+} satisfies FastifySchema;
+
+export const loginRequestSchema = {
+  tags: ['auth'],
+  body: Type.Object({
+    // email: Type.String({ format: 'email' }),
+    // password: Type.String({ minLength: 6 }),
+  }),
+  response: {
+    200: Type.Object({
+      token: Type.String(),
+    }),
+    401: Type.Object({
+      error: Type.String(),
+    }),
+    500: Type.Object({
+      error: Type.String(),
     }),
   },
 } satisfies FastifySchema;

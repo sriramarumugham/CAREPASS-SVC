@@ -50,37 +50,51 @@ export const updateTransactionStatus = async (
   return updatedTransaction;
 };
 
-export const getAllTransactions = async () => {
-  return await TransactionModel.aggregate([
+export const getAllTransactions = async (
+  page: number = 1,
+  limit: number = 10,
+) => {
+  const skip = (page - 1) * limit;
+
+  const transactions = await TransactionModel.aggregate([
     {
       $lookup: {
-        from: 'proposals', // Collection name for proposals
+        from: 'proposals',
         localField: 'proposalId',
         foreignField: 'proposalId',
         as: 'proposalDetails',
       },
     },
-    {
-      $unwind: '$proposalDetails', // Unwind to get the first matched proposal
-    },
+    { $unwind: '$proposalDetails' },
     {
       $lookup: {
-        from: 'users', // Collection name for users
-        localField: 'proposalDetails.createdBy', // Refer directly to `createdBy`
-        foreignField: 'userId', // Match `userId` in the users collection
+        from: 'users',
+        localField: 'proposalDetails.createdBy',
+        foreignField: 'userId',
         as: 'userDetails1',
       },
     },
     {
       $unwind: {
         path: '$userDetails1',
-        preserveNullAndEmptyArrays: true, // Optional, if no user is found, keep the transaction
+        preserveNullAndEmptyArrays: true,
       },
     },
     {
       $project: {
-        proposalDetails: 0, // Exclude proposalDetails from the final output
+        proposalDetails: 0,
       },
     },
+    { $skip: skip },
+    { $limit: limit },
   ]);
+
+  const total = await TransactionModel.countDocuments();
+
+  return {
+    data: transactions,
+    total,
+    page,
+    totalPages: Math.ceil(total / limit),
+  };
 };
